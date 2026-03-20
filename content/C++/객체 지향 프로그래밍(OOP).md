@@ -1,4 +1,49 @@
+캡슐화
+
+캡슐화는 **데이터(멤버 변수)** 와 **그 데이터를 다루는 기능(멤버 함수)** 을 하나의 클래스 안에 묶는 개념이다.  
+  
+즉, 클래스의 멤버 변수를 변경하거나 출력하는 함수들을 모두 **클래스 내부의 멤버 함수**로 작성하는 방식이다.
+
+은닉화
+
+```cpp
+class Test {
+private:
+	int m_iX;
+	int m_iY;
+public:
+	void Render();
+	void SetX_Y(int _iX, int _iY);
+};
+
+멤버 함수를 통해서 멤버 변수에 접근해야 한다
+
+void Test::Render()
+{
+	cout << m_iX << endl;
+	cout << m_iY << endl;
+}
+
+void Test::SetX_Y(int _iX, int _iY)
+{
+	m_iX = _iX;
+	m_iY = _iY;
+}
+
+Access Method : 멤버 변수에 접근하기 위한 함수들
+ex) Get, Set 함수들
 ```
+
+**접근제어 지시자
+- public : 내부, 외부 모드 접근 가능
+- protected : 자식 클래스에서만 접근 가능
+- private : 내부만 접근 가능( 같은 { } )
+
+*class의 멤버 변수들은 private으로 사용*
+*class의 멤버 함수들은 public으로 사용*
+
+상속성
+```cpp
 class CObj
 {
 public:
@@ -34,7 +79,7 @@ int main()
 2. 부모 소멸자 호출
 3. 메모리 반환
 
-```
+```cpp
 class CObj
 {
 public:
@@ -65,7 +110,7 @@ private:
 
 
 **객체 포인터 권한
-```
+```cpp
 class CObj
 {
 public:
@@ -95,3 +140,15 @@ int main()
 
 상속의 이점
 - 공통으로 포함 된 함수들로 여러가지 객체들을 쉽게 관리할 수 있다
+
+다형성
+
+**[[오버라이딩]]
+
+**[[다운 캐스팅(dynamic cast)]]
+
+**<정리>
+
+공통적인 기능이지만 세부적인 디테일이 다를 때는 오버라이딩,
+하나의 파생 클래스에서만 가지고 있는 기능은 다운 캐스팅을 하는것이 다형성에 알맞은 방식
+
