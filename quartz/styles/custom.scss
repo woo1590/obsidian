@@ -1,53 +1,64 @@
 @use "./base.scss";
 
-@use "./base.scss";
-
 /* =========================
-   Color / Theme
+   Neutral / Technical Theme
 ========================= */
 :root {
-  --bg: #f8fafc;
+  --bg: #f4f5f7;
   --bg-secondary: #ffffff;
-  --fg: #0f172a;
-  --fg-muted: #475569;
-  --fg-subtle: #64748b;
+  --fg: #111111;
+  --fg-muted: #444444;
+  --fg-subtle: #666666;
 
-  --primary: #7c3aed;
-  --primary-hover: #6d28d9;
-  --secondary-accent: #06b6d4;
+  --primary: #2f343a;
+  --primary-hover: #111111;
+  --secondary-accent: #58606b;
 
-  --border: #e2e8f0;
-  --border-strong: #cbd5e1;
+  --border: #e3e5e8;
+  --border-strong: #cfd4da;
 
-  --card-bg: rgba(255, 255, 255, 0.82);
-  --card-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-bg-strong: rgba(255, 255, 255, 0.96);
+  --card-shadow: 0 10px 30px rgba(17, 17, 17, 0.05);
 
-  --code-bg: #0f172a;
-  --code-fg: #e2e8f0;
-  --selection: rgba(124, 58, 237, 0.18);
+  --code-bg: #17191c;
+  --code-fg: #eceff3;
+
+  --selection: rgba(120, 128, 140, 0.18);
+  --hover-soft: rgba(120, 128, 140, 0.08);
+  --hover-mid: rgba(120, 128, 140, 0.14);
+  --active-soft: rgba(120, 128, 140, 0.18);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
 }
 
-/* 다크모드 */
 [saved-theme="dark"] {
-  --bg: #020617;
-  --bg-secondary: #0f172a;
-  --fg: #e2e8f0;
-  --fg-muted: #cbd5e1;
-  --fg-subtle: #94a3b8;
+  --bg: #0d0f12;
+  --bg-secondary: #15181c;
+  --fg: #eceff3;
+  --fg-muted: #c8ced6;
+  --fg-subtle: #98a2ad;
 
-  --primary: #a78bfa;
-  --primary-hover: #c4b5fd;
-  --secondary-accent: #22d3ee;
+  --primary: #e5e7eb;
+  --primary-hover: #ffffff;
+  --secondary-accent: #b3bcc7;
 
-  --border: #1e293b;
-  --border-strong: #334155;
+  --border: #262b31;
+  --border-strong: #3a414a;
 
-  --card-bg: rgba(15, 23, 42, 0.72);
-  --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  --card-bg: rgba(21, 24, 28, 0.78);
+  --card-bg-strong: rgba(21, 24, 28, 0.92);
+  --card-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
 
-  --code-bg: #020617;
-  --code-fg: #e2e8f0;
-  --selection: rgba(167, 139, 250, 0.2);
+  --code-bg: #08090b;
+  --code-fg: #eceff3;
+
+  --selection: rgba(190, 198, 210, 0.16);
+  --hover-soft: rgba(190, 198, 210, 0.08);
+  --hover-mid: rgba(190, 198, 210, 0.14);
+  --active-soft: rgba(190, 198, 210, 0.18);
 }
 
 /* =========================
@@ -59,8 +70,8 @@ html {
 
 body {
   background:
-    radial-gradient(circle at top left, rgba(124, 58, 237, 0.08), transparent 28%),
-    radial-gradient(circle at top right, rgba(6, 182, 212, 0.08), transparent 24%),
+    radial-gradient(circle at top left, rgba(180, 186, 194, 0.14), transparent 30%),
+    radial-gradient(circle at top right, rgba(212, 216, 222, 0.12), transparent 26%),
     var(--bg);
   color: var(--fg);
 }
@@ -73,17 +84,16 @@ body {
   max-width: 1480px;
 }
 
-/* 본문 폭 */
-article {
-  max-width: 860px;
-  line-height: 1.85;
-  font-size: 1.02rem;
-  color: var(--fg);
-}
-
 /* =========================
    Typography
 ========================= */
+article {
+  max-width: 860px;
+  font-size: 1.02rem;
+  line-height: 1.82;
+  color: var(--fg);
+}
+
 h1,
 h2,
 h3,
@@ -98,19 +108,19 @@ h6 {
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2.15rem;
   margin-top: 0.2em;
-  margin-bottom: 0.8em;
+  margin-bottom: 0.85em;
 }
 
 h2 {
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--border);
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.24rem;
 }
 
 p,
@@ -125,9 +135,9 @@ strong {
 blockquote {
   margin: 1.4rem 0;
   padding: 1rem 1.2rem;
-  border-left: 4px solid var(--primary);
+  border-left: 4px solid var(--border-strong);
   background: var(--card-bg);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   color: var(--fg-muted);
 }
 
@@ -141,7 +151,8 @@ a {
     color 0.18s ease,
     opacity 0.18s ease,
     border-color 0.18s ease,
-    background-color 0.18s ease;
+    background-color 0.18s ease,
+    transform 0.18s ease;
 }
 
 a:hover {
@@ -158,7 +169,7 @@ a:hover {
 }
 
 /* =========================
-   Header / Page Title
+   Page Head
 ========================= */
 .page-title,
 .article-title {
@@ -172,7 +183,7 @@ a:hover {
 }
 
 /* =========================
-   Layout Panels
+   Side Panels
 ========================= */
 .left.sidebar,
 .right.sidebar {
@@ -186,43 +197,148 @@ a:hover {
 .search {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   box-shadow: var(--card-shadow);
   backdrop-filter: blur(10px);
 }
 
-/* 사이드바 내부 여백 */
+/* 패널 내부 여백 */
 .explorer-content,
 .toc-content,
 .recent-notes ul,
 .search > div {
-  padding: 0.4rem;
+  padding: 0.45rem;
 }
 
 /* =========================
    Explorer
 ========================= */
-.folder-title,
-.explorer a {
-  border-radius: 10px;
-  transition:
-    background-color 0.15s ease,
-    color 0.15s ease;
+.explorer {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
 }
 
-.folder-title:hover,
-.explorer a:hover {
-  background: rgba(124, 58, 237, 0.08);
+.explorer-content {
+  padding: 0.45rem 0.4rem;
+  font-size: 0.88rem;
 }
 
-.explorer .active {
-  background: rgba(124, 58, 237, 0.14);
-  color: var(--primary);
+/* Explorer 상단 제목 */
+.explorer .title-button {
+  color: var(--fg);
+  font-size: 0.95rem;
   font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* 리스트 기본 구조 */
+.explorer ul {
+  margin: 0.08rem 0;
+  padding-left: 0.72rem;
+}
+
+.explorer li {
+  margin: 0.04rem 0;
+}
+
+/* 공통 텍스트 */
+.explorer a,
+.explorer .folder-title {
+  display: block;
+  line-height: 1.38;
+  letter-spacing: -0.01em;
+  border-radius: 8px;
+  padding: 0.17rem 0.42rem;
+  transition:
+    background-color 0.14s ease,
+    color 0.14s ease;
+}
+
+/* 파일 링크 */
+.explorer a,
+.explorer li > a {
+  font-size: 1.0rem;
+  font-weight: 400;
+  color: var(--fg-muted);
+}
+
+/* 폴더명 */
+.explorer .folder-title {
+  font-size: 1.0rem;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+/* hover */
+.explorer a:hover,
+.explorer li > a:hover,
+.explorer .folder-title:hover {
+  background: rgba(115, 115, 115, 0.08);
+  color: var(--fg);
+  text-decoration: none;
+}
+
+/* 현재 활성 항목 */
+.explorer .active,
+.explorer a.active,
+.explorer li > a.active {
+  background: rgba(115, 115, 115, 0.12);
+  color: var(--fg);
+  font-weight: 500;
+}
+
+/* 하위 계층은 조금 더 작게 */
+.explorer ul ul a,
+.explorer ul ul .folder-title {
+  font-size: 0.9rem;
+}
+
+/* 더 깊은 계층은 한 단계 더 작게 */
+.explorer ul ul ul a,
+.explorer ul ul ul .folder-title {
+  font-size: 0.85rem;
+}
+
+/* 접힘 화살표/아이콘 쪽 여백이 어색할 때 */
+.explorer .folder-outer {
+  margin: 0.02rem 0;
+}
+
+/* 스크롤바도 너무 튀지 않게 */
+.explorer-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.explorer-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.explorer-content::-webkit-scrollbar-thumb {
+  background: rgba(115, 115, 115, 0.28);
+  border-radius: 999px;
+}
+
+.explorer-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(115, 115, 115, 0.4);
+}
+
+/* 다크모드에서 hover 강도만 살짝 조정 */
+[saved-theme="dark"] .explorer a:hover,
+[saved-theme="dark"] .explorer li > a:hover,
+[saved-theme="dark"] .explorer .folder-title:hover {
+  background: rgba(245, 245, 245, 0.08);
+}
+
+[saved-theme="dark"] .explorer .active,
+[saved-theme="dark"] .explorer a.active,
+[saved-theme="dark"] .explorer li > a.active {
+  background: rgba(245, 245, 245, 0.12);
 }
 
 /* =========================
-   Table of Contents
+   TOC
 ========================= */
 .toc a {
   color: var(--fg-subtle);
@@ -231,155 +347,14 @@ a:hover {
 }
 
 .toc a:hover {
-  color: var(--primary);
-  border-left-color: var(--primary);
+  color: var(--fg);
+  border-left-color: var(--border-strong);
 }
 
 .toc .active {
-  color: var(--primary);
+  color: var(--fg);
   font-weight: 600;
-  border-left-color: var(--primary);
-}
-
-/* =========================
-   Cards 느낌
-========================= */
-article img,
-article table,
-article .callout,
-pre {
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-article img {
-  display: block;
-  margin: 1.4rem auto;
-  border: 1px solid var(--border);
-  box-shadow: var(--card-shadow);
-}
-
-/* =========================
-   Lists
-========================= */
-ul,
-ol {
-  padding-left: 1.4rem;
-}
-
-li + li {
-  margin-top: 0.35rem;
-}
-
-/* =========================
-   Code
-========================= */
-code {
-  font-size: 0.92em;
-  background: rgba(124, 58, 237, 0.08);
-  color: var(--primary);
-  padding: 0.18rem 0.42rem;
-  border-radius: 8px;
-}
-
-pre {
-  background: var(--code-bg);
-  color: var(--code-fg);
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  padding: 1.1rem 1.2rem;
-  box-shadow: var(--card-shadow);
-  overflow-x: auto;
-}
-
-pre code {
-  background: transparent;
-  color: inherit;
-  padding: 0;
-  border-radius: 0;
-}
-
-/* =========================
-   Tables
-========================= */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  box-shadow: var(--card-shadow);
-}
-
-th,
-td {
-  padding: 0.9rem 1rem;
-  border-bottom: 1px solid var(--border);
-  text-align: left;
-}
-
-th {
-  color: var(--fg);
-  background: rgba(124, 58, 237, 0.05);
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-/* =========================
-   Callouts
-========================= */
-.callout {
-  border: 1px solid var(--border);
-  background: var(--card-bg);
-  box-shadow: var(--card-shadow);
-  padding: 1rem 1rem;
-}
-
-.callout .callout-title {
-  font-weight: 700;
-  color: var(--fg);
-}
-
-.callout[data-callout="note"] {
-  border-left: 4px solid var(--primary);
-}
-
-.callout[data-callout="tip"] {
-  border-left: 4px solid var(--secondary-accent);
-}
-
-.callout[data-callout="warning"] {
-  border-left: 4px solid #f59e0b;
-}
-
-.callout[data-callout="danger"] {
-  border-left: 4px solid #ef4444;
-}
-
-/* =========================
-   Tag / Badge
-========================= */
-.tags a,
-.tag-link {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.3rem 0.65rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--bg-secondary);
-  color: var(--fg-subtle);
-  font-size: 0.85rem;
-  transition:
-    border-color 0.18s ease,
-    color 0.18s ease,
-    background-color 0.18s ease;
-}
-
-.tags a:hover,
-.tag-link:hover {
-  color: var(--primary);
-  border-color: rgba(124, 58, 237, 0.35);
-  background: rgba(124, 58, 237, 0.06);
+  border-left-color: var(--fg);
 }
 
 /* =========================
@@ -395,26 +370,147 @@ input[type="search"] {
 
 input[type="search"]:focus {
   outline: none;
-  border-color: rgba(124, 58, 237, 0.4);
-  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 4px rgba(120, 128, 140, 0.08);
 }
 
 /* =========================
-   Footer
+   Code
 ========================= */
-footer {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
+code {
+  font-size: 0.92em;
+  background: rgba(120, 128, 140, 0.12);
+  color: var(--fg);
+  padding: 0.16rem 0.4rem;
+  border-radius: 8px;
+}
+
+[saved-theme="dark"] code {
+  background: rgba(190, 198, 210, 0.14);
+  color: var(--code-fg);
+}
+
+pre {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border: 1px solid rgba(130, 138, 148, 0.18);
+  border-radius: var(--radius-lg);
+  padding: 1.08rem 1.18rem;
+  box-shadow: var(--card-shadow);
+  overflow-x: auto;
+}
+
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* =========================
+   Images / Tables / Cards
+========================= */
+article img,
+article table,
+article .callout,
+pre {
+  overflow: hidden;
+}
+
+article img {
+  display: block;
+  margin: 1.4rem auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+}
+
+th,
+td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+th {
+  color: var(--fg);
+  background: rgba(120, 128, 140, 0.06);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================
+   Callouts
+========================= */
+.callout {
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  padding: 1rem;
+}
+
+.callout .callout-title {
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.callout[data-callout="note"] {
+  border-left: 4px solid #7b8794;
+}
+
+.callout[data-callout="tip"] {
+  border-left: 4px solid #5f6b76;
+}
+
+.callout[data-callout="warning"] {
+  border-left: 4px solid #9a7b4f;
+}
+
+.callout[data-callout="danger"] {
+  border-left: 4px solid #8a5c5c;
+}
+
+/* =========================
+   Tags
+========================= */
+.tags a,
+.tag-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
   color: var(--fg-subtle);
+  font-size: 0.84rem;
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.tags a:hover,
+.tag-link:hover {
+  color: var(--fg);
+  border-color: var(--border-strong);
+  background: var(--hover-soft);
 }
 
 /* =========================
-   Home page styling
-   index.md에서 카드형으로 보이게
+   Home cards
 ========================= */
-
-/* 홈 첫 번째 ul을 카드 리스트처럼 */
 article > ul:first-of-type {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -431,24 +527,30 @@ article > ul:first-of-type > li {
 article > ul:first-of-type > li > a {
   display: block;
   height: 100%;
-  padding: 1rem 1rem;
+  padding: 1rem;
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   box-shadow: var(--card-shadow);
   color: var(--fg);
   font-weight: 600;
-  transition:
-    transform 0.18s ease,
-    border-color 0.18s ease,
-    box-shadow 0.18s ease;
 }
 
 article > ul:first-of-type > li > a:hover {
   transform: translateY(-3px);
-  border-color: rgba(124, 58, 237, 0.3);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.1);
+  border-color: var(--border-strong);
+  box-shadow: 0 16px 40px rgba(17, 17, 17, 0.08);
   text-decoration: none;
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--fg-subtle);
 }
 
 /* =========================
@@ -465,11 +567,25 @@ article > ul:first-of-type > li > a:hover {
   }
 
   h1 {
-    font-size: 1.9rem;
+    font-size: 1.88rem;
   }
 
   h2 {
-    font-size: 1.4rem;
+    font-size: 1.38rem;
+  }
+
+  .explorer-content,
+  .explorer ul,
+  .explorer li,
+  .explorer a,
+  .explorer .folder-title {
+    font-size: 0.88rem;
+  }
+
+  .explorer ul ul,
+  .explorer ul ul a,
+  .explorer ul ul .folder-title {
+    font-size: 0.84rem;
   }
 
   pre {
